@@ -22,9 +22,29 @@ void setup() {
 
 void draw() {
 
+    if (mousePressed && (mouseButton == LEFT)) {
+        if(!lmp){
+            lmp = true;
+            lmpx = mouseX;
+            lmpy = mouseY;
+        } else {
+            float deltaX = mouseX - lmpx;
+            float deltaY = mouseY - lmpy;
+            lmpx = mouseX;
+            lmpy = mouseY;
+            angle += ((elevation <= HALF_PI && elevation > -HALF_PI) ? (1) : -1) * map(deltaX,-600, 600, -TWO_PI, TWO_PI);
+            elevation += map(deltaY,-600, 600, PI, -PI);
+        }
+    } else {
+        lmpx = 0;
+        lmpy = 0;
+        lmp = false;
+    }
+
+
     background(0); // Set background to black
 
-    elevation += HALF_PI / 50;
+    // elevation -= HALF_PI / 50;
 
     angle = boundAngle(angle);
     elevation = boundElevation(elevation);
@@ -32,7 +52,7 @@ void draw() {
     calculateReals(angle, elevation, distance);
 
     drawModel();
-}
+}\
 
 
 void mouseClicked(){

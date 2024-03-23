@@ -12,7 +12,7 @@ float boundAngle(float angle){
 float boundElevation(float elevation){
     if(elevation > PI + HALF_PI){
         return(elevation - TWO_PI);
-    } else if(elevation < - (PI - HALF_PI)){
+    } else if(elevation < - HALF_PI){
         return(elevation + TWO_PI);
     }
     return(elevation);
