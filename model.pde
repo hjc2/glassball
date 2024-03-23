@@ -6,7 +6,8 @@ void drawModel(){
 // Draw axes for reference
   strokeWeight(4);
   stroke(255, 0, 0); line(-100, 0, 0, 100, 0, 0); // X axis in red
-  stroke(0, 255, 0); line(0, -100, 0, 0, 100, 0); // Y axis in green
+  stroke(0, 255, 0); line(0, 0, 0, 0, 100, 0); // Y axis in green
+  stroke(0,255,120); line(0,-100,0,0,0,0);
   stroke(0, 0, 255); line(0, 0, -100, 0, 0, 100); // Z axis in blue
 
 strokeWeight(15);
