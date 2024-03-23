@@ -60,3 +60,9 @@ void mouseClicked(){
         // elevation += HALF_PI / 10;
 
 }
+
+
+void mouseWheel(MouseEvent event) {
+  float e = event.getCount();
+  distance += -10 * e;
+}
