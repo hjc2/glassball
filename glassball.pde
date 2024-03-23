@@ -2,7 +2,7 @@
 
 
 float angle = -HALF_PI / 6; // phi
-float elevation = -HALF_PI / 3; // theta
+float elevation = 0; // theta
 float distance = 450;
 
 float roll = 0;
@@ -24,26 +24,19 @@ void draw() {
 
     background(0); // Set background to black
 
-    // elevation += HALF_PI / 64;
+    elevation += HALF_PI / 50;
 
-    //Calculate camera's position in spherical coordinates
-    float camX = distance * cos(elevation) * cos(angle);
-    float camY = distance * sin(elevation);
-    float camZ = distance * cos(elevation) * sin(angle);
+    angle = boundAngle(angle);
+    elevation = boundElevation(elevation);
 
-    float upY = 0;
-
-    if(timer > 200){
-        upY = -1.0;
-    } else {
-        upY = 1.0;
-    }
-    timer += 1;
-    if(timer > 400){
-        timer = 0;
-    }
-
-    camera(camX, camY, camZ, 0, 0, 0, 0, upY, 0);
+    calculateReals(angle, elevation, distance);
 
     drawModel();
+}
+
+
+void mouseClicked(){
+
+        // elevation += HALF_PI / 10;
+
 }
