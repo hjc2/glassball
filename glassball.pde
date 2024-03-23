@@ -22,7 +22,8 @@ void draw() {
             mpx = mouseX;
         } else {
             float deltaX = mouseX - mpx;
-            roll += map(deltaX,-300, 300, -HALF_PI, HALF_PI);
+            mpx = mouseX;
+            roll += map(deltaX,-600, 600, -TWO_PI, TWO_PI);
         }
     } else {
         mpx = 0;
@@ -31,7 +32,6 @@ void draw() {
 
     background(0); // Set background to black
 
-    angle = 0;
     elevation = HALF_PI / 5;
 
     //Calculate camera's position in spherical coordinates
@@ -39,7 +39,8 @@ void draw() {
     float camY = distance * sin(elevation);
     float camZ = distance * cos(elevation) * sin(angle);
 
-    // roll += PI / 120;
+    angle += PI / 120;
+    println(angle);
     //Set camera position, view center, and up direction
     beginCamera();
     camera(camX, camY, camZ, 0, 0, 0, 0, 1, 0);
