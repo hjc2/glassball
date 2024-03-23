@@ -1,5 +1,5 @@
 
-
+Sierpinski s = new Sierpinski();
 
 float angle = -HALF_PI / 6; // phi
 float elevation = 0; // theta
@@ -15,6 +15,8 @@ float lmpx = 0.0;
 float lmpy = 0.0;
 
 int timer = 0;
+
+
 
 void setup() {
     size(600,600, P3D); // Use P3D renderer for 3D drawing
@@ -51,8 +53,9 @@ void draw() {
 
     calculateReals(angle, elevation, distance);
 
-    drawModel();
-}\
+    // drawModel();
+    s.drawModel();
+}
 
 
 void mouseClicked(){
