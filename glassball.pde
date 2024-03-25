@@ -53,8 +53,8 @@ void draw() {
 
     calculateReals(angle, elevation, distance);
 
-    // drawModel();
-    s.drawModel();
+    drawModel();
+    // s.drawModel();
 }
 
 
