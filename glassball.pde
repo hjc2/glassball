@@ -1,6 +1,5 @@
 
 Sierpinski s = new Sierpinski();
-World w = new World();
 
 float angle = -HALF_PI / 6; // phi
 float elevation = 0; // theta
@@ -25,18 +24,6 @@ void setup() {
 
 void draw() {
 
-    if (mousePressed && (mouseButton == RIGHT)) {
-        if(!mp){
-            mp = true;
-            mpx = mouseX;
-        } else {
-            float deltaX = mouseX - mpx;
-            roll += map(deltaX,-300, 300, -HALF_PI, HALF_PI);
-        }
-    } else {
-        mpx = 0;
-        mp = false;
-    }
     if (mousePressed && (mouseButton == LEFT)) {
         if(!lmp){
             lmp = true;
@@ -64,10 +51,10 @@ void draw() {
     angle = boundAngle(angle);
     elevation = boundElevation(elevation);
 
-    calculateReals(angle, elevation, distance, roll);
+    calculateReals(angle, elevation, distance);
 
     // drawModel();
-    w.drawModel();
+    s.drawModel();
 }
 
 
