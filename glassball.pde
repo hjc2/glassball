@@ -5,18 +5,18 @@
 
 //
 float angle = 0f;
+
+PVector basisAxis =  new PVector(0, 400, 100);
+
 PVector rotAxis;
 
 ArrayList<Frame> myList;
 
-
-
 void setup() {
   size(500, 500, P3D);
   angle=0;
-  rotAxis = new PVector(0, 400, 100);
+  rotAxis = basisAxis;
   myList = new ArrayList<Frame>();
-
 }
 
 void draw() {
@@ -24,10 +24,15 @@ void draw() {
   lights();
   translate(200, 200);
 
+    rotAxis = basisAxis;
 
     for(Frame x : myList){
+        println(rotAxis);
+        rotAxis.add(x.vector);
         rotateAroundAxisBasisChange(x.vector, x.value);
     }
+
+    println(myList.size());
   
   strokeWeight(5);
   stroke(255);
@@ -45,5 +50,12 @@ void draw() {
   box(50);
 
 
-  myList.add(new Frame(new PVector(0, 400, 100), PI / 60));
+}
+
+void mouseDragged() {
+  if (mouseButton == LEFT) {
+    float diff = mouseX - pmouseX;
+    println(diff);
+    myList.add(new Frame(rotAxis.copy(), diff / width));
+  }
 }
