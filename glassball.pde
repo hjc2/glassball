@@ -52,7 +52,7 @@ void draw() {
     calculateReals(angle, elevation, distance);
 
     drawModel();
-}\
+}
 
 
 void mouseClicked(){
