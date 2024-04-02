@@ -41,6 +41,8 @@ void draw() {
     time = time % 720;
     pushMatrix();
 
-	//saveFrame("mobius-####.png");
+    if(time < 720){
+	    saveFrame("images/zobius-####.png");
 
+    }
 }
