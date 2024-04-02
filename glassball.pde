@@ -30,16 +30,15 @@ void draw() {
 	drawMobiusStrip(3);
     
 
-	PVector ballpoint = calculateMobiusPoint(time, 0.8);
+	PVector ballpoint = calculateMobiusPoint(time, 0.5);
 	pushMatrix();
 	translate(ballpoint.x, ballpoint.y, ballpoint.z);
-	println(ballpoint);
 	sphere(10);
 	popMatrix();
 
 
 
-	time += 1;
+	time += 5;
     pushMatrix();
 }
 

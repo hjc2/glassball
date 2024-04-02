@@ -32,8 +32,7 @@ void drawMobiusStrip(float loops) {
   }
 }
 
-
-PVector calculateMobiusPoint(float angleDegrees, float offset) {
+PVector calculateMobiusPoint(float angleDegrees, float vOffset) {
   // Convert angle from degrees to radians
   float angleRadians = radians(angleDegrees);
   
@@ -43,14 +42,14 @@ PVector calculateMobiusPoint(float angleDegrees, float offset) {
   
   // Use the provided vOffset to determine the side of the strip
   // vOffset should be between -1 and 1. For example, use 0.5 or -0.5 to place the point on one side.
-  float v = offset; 
+  float v = vOffset; 
   
   // Calculate the point using the parametric equations for a Mobius strip
   float x = (1 + (v / 2) * cos(u / 2)) * cos(u);
   float y = (1 + (v / 2) * cos(u / 2)) * sin(u);
-  float z = (v / 2) * sin(u / 2);
-  
+  float z = (v / 2) * sin(u / 2); // Apply the surface offset here
+  println(z);
   // Scale the coordinates (if necessary) to match the visualization scale
   // Here, multiplying by 100 as done in your drawMobiusStrip function
-  return new PVector(x * 100, y * 100, z * 100);
+  return new PVector(x * 100, y * 100, (z) * 100); // Adjust z by adding the surfaceOffset
 }
