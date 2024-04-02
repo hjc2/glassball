@@ -1,5 +1,11 @@
 
-
+PVector rotateAroundAxis(PVector vec, PVector axis, float angle) {
+    PVector newVec = new PVector();
+    newVec.x = vec.x * cos(angle) + (axis.y * vec.z - axis.z * vec.y) * sin(angle) + axis.x * axis.x * (1 - cos(angle));
+    newVec.y = vec.y * cos(angle) + (axis.z * vec.x - axis.x * vec.z) * sin(angle) + axis.y * axis.y * (1 - cos(angle));
+    newVec.z = vec.z * cos(angle) + (axis.x * vec.y - axis.y * vec.x) * sin(angle) + axis.z * axis.z * (1 - cos(angle));
+    return newVec;
+}
 
 // an axis, and an angle.
 
@@ -51,27 +57,36 @@ void mouseDragged() {
     float diffX = mouseX - pmouseX;
     float diffY = mouseY - pmouseY;
 
-    diffX = 0.0001;
-    diffY = 0;
 
-    // PVector mouseVector = PVector.add(PVector.mult(horizontal, diffX), PVector.mult(vertical, diffX));
+    //seems to be correct
+    PVector mouseVector = PVector.add(PVector.mult(horizontal, diffX), PVector.mult(vertical, diffY));
 
 
-    // PVector outscreen = vertical.cross(horizontal);
+    PVector outscreen = horizontal.cross(vertical);
 
-    // PVector axis = mouseVector.cross(outscreen);
+    PVector axis = mouseVector.cross(outscreen);
+
+    float angle = mouseVector.mag() / 400;
+
 
 
     //  rotateX(PI / 1024);
 
 
-    println(axis);
+
     println(mouseVector);
-    println(mouseVector.mag());
-    println(diffX);
-    rotateAroundAxisBasisChange(axis, mouseVector.mag());
-    horizontal = horizontal.sub(axis);
-    vertical = vertical.sub(axis);
+    println(axis);
+    println(axis.dot(mouseVector)); // 0 thus they should be orthogonal
+    println(vertical);
+    println(horizontal);
+    println("-----");
+    
+        horizontal = rotateAroundAxis(horizontal, axis, angle);
+        vertical = rotateAroundAxis(vertical, axis, angle);
+
+
+    rotateAroundAxisBasisChange(axis, mouseVector.mag() / 400);
+
   }
   pushMatrix();
 }
