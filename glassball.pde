@@ -20,10 +20,10 @@ void draw() {
   directionalLight(255, 255, 255, 0, 0, 1); // Additional directional light
 
 
-    // strokeWeight(6);
-    // stroke(255);
-    // line(0, 0, 0, horizontal.x * height, horizontal.y * height, horizontal.z * height);
-    // line(0, 0, 0, vertical.x * height, vertical.y * height, vertical.z * height);
+    strokeWeight(6);
+    stroke(255);
+    line(0, 0, 0, horizontal.x * height, horizontal.y * height, horizontal.z * height);
+    line(0, 0, 0, vertical.x * height, vertical.y * height, vertical.z * height);
     
     // // drawModel();
 
@@ -41,7 +41,7 @@ void draw() {
 	time += 1;
     pushMatrix();
 
-	// saveFrame("mobius-####.png");
+	saveFrame("mobius-####.png");
 
 }
 
