@@ -44,7 +44,16 @@ void draw() {
     }
 
 
+<<<<<<< Updated upstream
     background(0); // Set background to black
+=======
+    // strokeWeight(6);
+    // stroke(255);
+    // line(0, 0, 0, horizontal.x * height, horizontal.y * height, horizontal.z * height);
+    // line(0, 0, 0, vertical.x * height, vertical.y * height, vertical.z * height);
+    
+    // // drawModel();
+>>>>>>> Stashed changes
 
     // elevation -= HALF_PI / 50;
 
@@ -60,7 +69,15 @@ void draw() {
 
 void mouseClicked(){
 
+<<<<<<< Updated upstream
         // elevation += HALF_PI / 10;
+=======
+	time += 5;
+    time = time % 720;
+    pushMatrix();
+
+	// saveFrame("mobius-####.png");
+>>>>>>> Stashed changes
 
 }
 
