@@ -1,21 +1,26 @@
 
+
+import toxi.geom.*;
+
+
 PVector rotateAroundAxis(PVector vec, PVector axis, float angle) {
-    PVector newVec = new PVector();
-    newVec.x = vec.x * cos(angle) + (axis.y * vec.z - axis.z * vec.y) * sin(angle) + axis.x * axis.x * (1 - cos(angle));
-    newVec.y = vec.y * cos(angle) + (axis.z * vec.x - axis.x * vec.z) * sin(angle) + axis.y * axis.y * (1 - cos(angle));
-    newVec.z = vec.z * cos(angle) + (axis.x * vec.y - axis.y * vec.x) * sin(angle) + axis.z * axis.z * (1 - cos(angle));
-    return newVec;
+
+  Vec3D myVec = new Vec3D(vec.x, vec.y, vec.z);
+  Vec3D axisVec = new Vec3D(axis.x, axis.y, axis.z);
+  
+  myVec.rotateAroundAxis(axisVec,angle);
+  
+  PVector tmp = new PVector(myVec.x, myVec.y, myVec.z);
+  
+  return(tmp);
 }
 
-// an axis, and an angle.
-
-//
-PVector horizontal = new PVector(0,-1,0);
-PVector vertical = new PVector(1,0,0);
+PVector horizontal = new PVector(1, 0, 0);
+PVector vertical = new PVector(0, -1, 0);
 
 void setup() {
   size(500, 500, P3D);
-  translate(200, 200);
+  translate(250, 250);
   pushMatrix();
 }
 
@@ -24,16 +29,16 @@ void draw() {
   background(0);
   lights();
 
-// dx * horizontal vector + dy * vertical vector
+  // dx * horizontal vector + dy * vertical vector
 
-// find the vector on the screen thats perpendicular
+  // find the vector on the screen thats perpendicular
 
-// vertical cross horizontal -> out of the screen.
-  
+  // vertical cross horizontal -> out of the screen.
+
   strokeWeight(5);
   stroke(255);
-  line(0, 0, 0, horizontal.x, horizontal.y, horizontal.z);
-  line(0, 0, 0, vertical.x, vertical.y, vertical.z);
+  line(0, 0, 0, horizontal.x * height, horizontal.y * height, horizontal.z * height);
+  line(0, 0, 0, vertical.x * height, vertical.y * height, vertical.z * height);
 
   stroke(color(255, 0, 0));
   line(-width, 0, 0, width, 0, 0);
@@ -44,7 +49,7 @@ void draw() {
 
   noStroke();
   pushMatrix();
-  translate(50,50,50);
+  translate(50, 50, 50);
   box(50);
   popMatrix();
 
@@ -52,41 +57,49 @@ void draw() {
 }
 
 void mouseDragged() {
-  popMatrix();
-  if (mouseButton == LEFT) {
-    float diffX = mouseX - pmouseX;
-    float diffY = mouseY - pmouseY;
+
+  float diffX = mouseX - pmouseX;
+  float diffY = mouseY - pmouseY;
+
+  if (!(diffX == 0 && diffY == 0)) {
+
+    popMatrix();
+    if (mouseButton == LEFT) {
 
 
-    //seems to be correct
-    PVector mouseVector = PVector.add(PVector.mult(horizontal, diffX), PVector.mult(vertical, diffY));
+      horizontal.normalize();
+      vertical.normalize();
+      //seems to be correct
+      PVector mouseVector = PVector.add(PVector.mult(horizontal, diffX), PVector.mult(vertical, diffY));
 
+      PVector outscreen = horizontal.cross(vertical);
 
-    PVector outscreen = horizontal.cross(vertical);
+      PVector axis = mouseVector.cross(outscreen);
 
-    PVector axis = mouseVector.cross(outscreen);
+      axis.normalize();
+      horizontal.normalize();
+      vertical.normalize();
+      outscreen.normalize();
 
-    float angle = mouseVector.mag() / 400;
+      float angle = mouseVector.mag() / 400;
 
+      println(diffX + "," + diffY);
+      println(mouseVector);
+      println(axis);
+      println(axis.dot(mouseVector)); // 0 thus they should be orthogonal
+      println(vertical);
+      println(horizontal);
+      println(outscreen);
+      println(horizontal);
+      println("-----");
 
+      //stage of rotate back to the axis
 
-    //  rotateX(PI / 1024);
+      horizontal = rotateAroundAxis(horizontal, axis, -angle);
+      vertical = rotateAroundAxis(vertical, axis, -angle);
 
-
-
-    println(mouseVector);
-    println(axis);
-    println(axis.dot(mouseVector)); // 0 thus they should be orthogonal
-    println(vertical);
-    println(horizontal);
-    println("-----");
-    
-        horizontal = rotateAroundAxis(horizontal, axis, angle);
-        vertical = rotateAroundAxis(vertical, axis, angle);
-
-
-    rotateAroundAxisBasisChange(axis, mouseVector.mag() / 400);
-
+      rotateAroundAxisBasisChange(axis, angle);
+    }
+    pushMatrix();
   }
-  pushMatrix();
 }
