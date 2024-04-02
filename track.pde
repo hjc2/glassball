@@ -86,3 +86,44 @@ PVector calculateOffsetMobiusPoint(float angleDegrees, float offsetDistance) {
   // Scaling the coordinates for visualization
   return new PVector(x * 100, y * 100, z * 100);
 }
+
+
+PVector calculateNormal(float u, float v) {
+  // Partial derivatives of the Mobius strip parametric equations
+  float dxdu = -sin(u) * (1 + v * cos(u / 2)) - 0.5 * v * sin(u / 2) * cos(u);
+  float dydu = cos(u) * (1 + v * cos(u / 2)) - 0.5 * v * sin(u / 2) * sin(u);
+  float dzdu = 0.5 * v * cos(u / 2);
+  
+  float dxdv = cos(u / 2) * cos(u);
+  float dydv = cos(u / 2) * sin(u);
+  float dzdv = sin(u / 2);
+  
+  // The normal vector is the cross product of the partial derivatives
+  PVector du = new PVector(dxdu, dydu, dzdu);
+  PVector dv = new PVector(dxdv, dydv, dzdv);
+  PVector normal = du.cross(dv);
+  normal.normalize(); // Normalize the normal vector
+  
+  return normal;
+}
+
+
+PVector calculateOffsetPoint(float angleDegrees, float offsetDistance) {
+  float u = radians(angleDegrees); // Angle converted to radians
+  float v = 0; // Stay on the central line
+
+  // Parametric equations for the Mobius strip
+  float x = (1 + v * cos(u / 2)) * cos(u);
+  float y = (1 + v * cos(u / 2)) * sin(u);
+  float z = v * sin(u / 2);
+
+  // Calculate the normal vector at this point
+  PVector normal = calculateNormal(u, v);
+
+  // Apply the offset along the normal vector
+  x += normal.x * offsetDistance;
+  y += normal.y * offsetDistance;
+  z += normal.z * offsetDistance;
+
+  return new PVector(x * 100, y * 100, z * 100); // Scale for visualization
+}

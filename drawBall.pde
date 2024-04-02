@@ -1,7 +1,7 @@
 
 
 void drawBall(int time, float offset){
-    PVector ballpoint = calculateOffsetMobiusPoint(time, offset);
+    PVector ballpoint = calculateOffsetPoint(time, offset);
 	pushMatrix();
 	translate(ballpoint.x, ballpoint.y, ballpoint.z);
 	noStroke();
