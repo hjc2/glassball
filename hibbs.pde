@@ -53,3 +53,15 @@ void rotateAroundAxisRotationComposition(PVector axis, float theta) {
   rotateX(-gamma);
   rotateY(-phi);
 }
+
+PVector rotateAroundAxis(PVector vec, PVector axis, float angle) {
+    
+    Vec3D myVec = new Vec3D(vec.x, vec.y, vec.z);
+    Vec3D axisVec = new Vec3D(axis.x, axis.y, axis.z);
+    
+    myVec.rotateAroundAxis(axisVec,angle);
+    
+    PVector tmp = new PVector(myVec.x, myVec.y, myVec.z);
+    
+    return(tmp);
+}
