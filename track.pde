@@ -89,7 +89,7 @@ PVector calculateOffsetMobiusPoint(float angleDegrees, float offsetDistance) {
 
 
 PVector calculateNormal(float u, float v) {
-  // Partial derivatives of the Mobius strip parametric equations
+  // Calculate partial derivatives
   float dxdu = -sin(u) * (1 + v * cos(u / 2)) - 0.5 * v * sin(u / 2) * cos(u);
   float dydu = cos(u) * (1 + v * cos(u / 2)) - 0.5 * v * sin(u / 2) * sin(u);
   float dzdu = 0.5 * v * cos(u / 2);
@@ -98,15 +98,13 @@ PVector calculateNormal(float u, float v) {
   float dydv = cos(u / 2) * sin(u);
   float dzdv = sin(u / 2);
   
-  // The normal vector is the cross product of the partial derivatives
   PVector du = new PVector(dxdu, dydu, dzdu);
   PVector dv = new PVector(dxdv, dydv, dzdv);
   PVector normal = du.cross(dv);
-  normal.normalize(); // Normalize the normal vector
+  normal.normalize();
   
   return normal;
 }
-
 
 PVector calculateOffsetPoint(float angleDegrees, float offsetDistance) {
   float u = radians(angleDegrees); // Angle converted to radians
@@ -125,5 +123,28 @@ PVector calculateOffsetPoint(float angleDegrees, float offsetDistance) {
   y += normal.y * offsetDistance;
   z += normal.z * offsetDistance;
 
+  return new PVector(x * 100, y * 100, z * 100); // Scale for visualization
+}
+
+// Function to calculate a point's position considering both an offset along and perpendicular to the Möbius strip
+PVector calculatePositionWithOffsets(float angleDegrees, float vOffset, float normalOffset) {
+  float u = radians(angleDegrees); // Angle converted to radians for the longitudinal position
+  
+  // Adjust v according to the desired offset along the strip's width
+  float v = vOffset; // Directly control the position along the strip's width
+  
+  // Parametric equations for the Möbius strip
+  float x = (1 + v * cos(u / 2)) * cos(u);
+  float y = (1 + v * cos(u / 2)) * sin(u);
+  float z = v * sin(u / 2);
+  
+  // Calculate the normal vector at this point
+  PVector normal = calculateNormal(u, v);
+  
+  // Apply the normal offset
+  x += normal.x * normalOffset;
+  y += normal.y * normalOffset;
+  z += normal.z * normalOffset;
+  
   return new PVector(x * 100, y * 100, z * 100); // Scale for visualization
 }
