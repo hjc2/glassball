@@ -29,30 +29,13 @@ void draw() {
   background(0);
   lights();
 
-  // dx * horizontal vector + dy * vertical vector
-
-  // find the vector on the screen thats perpendicular
-
-  // vertical cross horizontal -> out of the screen.
-
   strokeWeight(5);
   stroke(255);
   line(0, 0, 0, horizontal.x * height, horizontal.y * height, horizontal.z * height);
   line(0, 0, 0, vertical.x * height, vertical.y * height, vertical.z * height);
 
-  stroke(color(255, 0, 0));
-  line(-width, 0, 0, width, 0, 0);
-  stroke(color(0, 255, 0));
-  line(0, -height, 0, 0, height, 0);
-  stroke(color(0, 0, 255));
-  line(0, 0, -height, 0, 0, height);
-
-  noStroke();
-  pushMatrix();
-  translate(50, 50, 50);
-  box(50);
-  popMatrix();
-
+  drawModel();
+  
   pushMatrix();
 }
 
@@ -60,6 +43,8 @@ void mouseDragged() {
 
   float diffX = mouseX - pmouseX;
   float diffY = mouseY - pmouseY;
+
+  diffY = -diffY;
 
   if (!(diffX == 0 && diffY == 0)) {
 
@@ -81,7 +66,7 @@ void mouseDragged() {
       vertical.normalize();
       outscreen.normalize();
 
-      float angle = mouseVector.mag() / 400;
+      float angle = mouseVector.mag() / 120;
 
       println(diffX + "," + diffY);
       println(mouseVector);
