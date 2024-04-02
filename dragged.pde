@@ -31,8 +31,6 @@ void mouseDragged() {
             outscreen.normalize();
             
             float angle = mouseVector.mag() / 120;
-
-			println(angle);
             
             //stage of rotate back to the axis
             
@@ -64,9 +62,6 @@ void mouseDragged() {
 			if(diffX < 0){
 				angle = angle * -1;
 			}
-            //stage of rotate back to the axis
-			println(mouseVector);
-			println(diffX, angle);
             
             horizontal = rotateAroundAxis(horizontal, outscreen, angle);
             vertical= rotateAroundAxis(vertical, outscreen, angle);
