@@ -28,8 +28,6 @@ void draw() {
     line(0, 0, 0, horizontal.x * height, horizontal.y * height, horizontal.z * height);
     line(0, 0, 0, vertical.x * height, vertical.y * height, vertical.z * height);
     
-    // // drawModel();
-
 	drawMobiusStrip(3);
     
 	fill(0, 255, 255);
@@ -39,10 +37,13 @@ void draw() {
 	fill(255, 255, 255);
 	drawBall(time, -0.5, 0.1);
 
+	time += 5;
+    time = time % 720;
+    pushMatrix();
 
 
 	time += 1;
     pushMatrix();
-	saveFrame("mobius-####.png");
+	//saveFrame("mobius-####.png");
 
 }

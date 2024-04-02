@@ -3,16 +3,19 @@
 
 void drawMobiusStrip(float loops) {
 
-  int stepsLength = 60;
-  int stepsWide = 2;
-  float uStep = TWO_PI / stepsLength;
+
+  int stepsLength = 120;
+  int stepsWide = 10;
+
+float uStep = TWO_PI / stepsLength;
   float vStep = 2.0 / stepsWide;
   for (float u = 0; u <= TWO_PI * loops; u += uStep) {
 
     beginShape(TRIANGLE_STRIP);
-    // noStroke();
-    strokeWeight(1);
-    stroke(0);
+
+    noStroke();
+    // strokeWeight(1);
+    // stroke(0);
 
     for (float v = -1; v <= 1; v += vStep) {
       for (int i = 0; i < 2; i++) {
@@ -87,6 +90,26 @@ PVector calculateOffsetMobiusPoint(float angleDegrees, float offsetDistance) {
   return new PVector(x * 100, y * 100, z * 100);
 }
 
+
+=======
+
+  // Draw edges with a stroke
+  strokeWeight(2);
+  stroke(255); // Set stroke color to black
+  for (float u = 0; u <= TWO_PI * loops; u += uStep) {
+    for (float[] v : new float[][]{{-1, -1 + vStep}, {1 - vStep, 1}}) { // Only draw the top and bottom edges
+      beginShape(LINES);
+      for (int i = 0; i < 2; i++) {
+        float uOffset = (i == 0) ? 0 : uStep;
+        float x = (1 + (v[i] / 2) * cos((u + uOffset) / 2)) * cos(u + uOffset);
+        float y = (1 + (v[i] / 2) * cos((u + uOffset) / 2)) * sin(u + uOffset);
+        float z = (v[i] / 2) * sin((u + uOffset) / 2);
+        vertex(x * 100, y * 100, z * 100); // Scale up the size to make it visible
+      }
+      endShape();
+    }
+  }
+}
 
 PVector calculateNormal(float u, float v) {
   // Calculate partial derivatives
