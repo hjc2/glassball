@@ -5,6 +5,9 @@ PVector horizontal = new PVector(1, 0, 0);
 PVector vertical = new PVector(0, -1, 0);
 int time = 0;
 
+
+
+
 void setup() {
     size(500, 500, P3D);
     translate(250, 250);
@@ -40,8 +43,6 @@ void draw() {
 
 	time += 1;
     pushMatrix();
-
 	saveFrame("mobius-####.png");
 
 }
-
