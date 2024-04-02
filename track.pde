@@ -53,3 +53,36 @@ PVector calculateMobiusPoint(float angleDegrees, float vOffset) {
   // Here, multiplying by 100 as done in your drawMobiusStrip function
   return new PVector(x * 100, y * 100, (z) * 100); // Adjust z by adding the surfaceOffset
 }
+
+PVector calculateOffsetMobiusPoint(float angleDegrees, float offsetDistance) {
+  float angleRadians = radians(angleDegrees); // Convert angle to radians
+  
+  // Simplified calculation for the center line of the Mobius strip
+  float u = angleRadians / 2; // Mapping 720 degrees to a full loop
+  
+  // Basic Mobius strip parameters for the centerline
+  float x = cos(u);
+  float y = sin(u);
+  float z = 0; // Centerline, so no vertical offset initially
+  
+  // Approximate normal direction
+  // For a Mobius strip, normal direction changes along the strip. Here, we approximate it for visual effect.
+  // Note: This is a simplified and not mathematically precise method.
+  float nx = cos(u / 2) * cos(u); // Simplified normal x component
+  float ny = cos(u / 2) * sin(u); // Simplified normal y component
+  float nz = sin(u / 2);          // Simplified normal z component
+  
+  // Normalize the normal vector
+  float length = sqrt(nx * nx + ny * ny + nz * nz);
+  nx /= length;
+  ny /= length;
+  nz /= length;
+  
+  // Offset the point along the approximate normal direction
+  x += nx * offsetDistance;
+  y += ny * offsetDistance;
+  z += nz * offsetDistance; // Adding the offset to z based on the normal's z component
+  
+  // Scaling the coordinates for visualization
+  return new PVector(x * 100, y * 100, z * 100);
+}

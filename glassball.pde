@@ -29,16 +29,19 @@ void draw() {
 
 	drawMobiusStrip(3);
     
-
-	PVector ballpoint = calculateMobiusPoint(time, 0.5);
-	pushMatrix();
-	translate(ballpoint.x, ballpoint.y, ballpoint.z);
-	sphere(10);
-	popMatrix();
+	fill(0, 255, 255);
+	drawBall(time, 0.5);
+	fill(122, 255, 255);
+	drawBall(time, 0.0);
+	fill(255, 255, 255);
+	drawBall(time, -0.5);
 
 
 
 	time += 5;
     pushMatrix();
+
+	saveFrame("mobius-####.png");
+
 }
 
