@@ -54,13 +54,16 @@ void mouseDragged() {
     diffX = 0.0001;
     diffY = 0;
 
-    PVector mouseVector = PVector.add(PVector.mult(horizontal, diffX), PVector.mult(vertical, diffX));
+    // PVector mouseVector = PVector.add(PVector.mult(horizontal, diffX), PVector.mult(vertical, diffX));
+
+
+    // PVector outscreen = vertical.cross(horizontal);
+
+    // PVector axis = mouseVector.cross(outscreen);
+
 
     //  rotateX(PI / 1024);
 
-    PVector outscreen = vertical.cross(horizontal);
-
-    PVector axis = mouseVector.cross(outscreen);
 
     println(axis);
     println(mouseVector);
