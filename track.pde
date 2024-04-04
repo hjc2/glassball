@@ -26,7 +26,7 @@ float uStep = TWO_PI / stepsLength;
     
         colorMode(HSB, 360, 100, 100);
 
-        fill(120);
+        fill(190, 100, 80);
 
         vertex(x * 100, y * 100, z * 100); // Scale up the size to make it visible
       }

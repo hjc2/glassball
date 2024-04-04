@@ -19,8 +19,8 @@ void draw() {
     background(100);
     lights();
     
-  directionalLight(255, 255, 255, 0, 0, -1); // Additional directional light
-  directionalLight(255, 255, 255, 0, 0, 1); // Additional directional light
+//   directionalLight(255, 255, 255, 0, 0, -1); // Additional directional light
+//   directionalLight(255, 255, 255, 0, 0, 1); // Additional directional light
 
 
     // strokeWeight(6);
@@ -30,6 +30,7 @@ void draw() {
     
 	drawMobiusStrip(3);
     
+    colorMode(HSB);
 	fill(0, 255, 255);
 	drawBall(time, 0.5, 0.1);
 	fill(122, 255, 255);
@@ -41,8 +42,8 @@ void draw() {
     time = time % 720;
     pushMatrix();
 
-    if(time < 720){
-	    saveFrame("images/zobius-####.png");
+    // if(time < 720){
+	//     saveFrame("images/zobius-####.png");
 
-    }
+    // }
 }
