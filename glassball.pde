@@ -20,7 +20,7 @@ void setup() {
     pushMatrix();
 
 
-    for(int i = 0; i < 800; i++){
+    for(int i = 0; i < 1000; i++){
         Snake tmp = new Snake();
         snakeList.add(tmp);
     }
@@ -41,12 +41,19 @@ void draw() {
 	drawMobiusStrip();
     
 
-	time += 1;
+	time += 2;
+
+    // PVector stat =  calculatePositionWithOffsets(time,0,0);
+    // pushMatrix();
+    // translate(stat.x, stat.y, stat.z);
+    // sphere(15);
+    // popMatrix();
     // time = time % 720;
 
     pushMatrix();
     
-    if(time >= 720){
+    move();
+    if(time < 720){
 	    // saveFrame("images/zobius-####.png");
     }
 }

@@ -1,5 +1,6 @@
 
 void drawMobiusStrip() {
+
   int stepsLength = 120;
   int stepsWide = 10;
 
