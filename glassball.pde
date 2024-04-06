@@ -5,6 +5,8 @@ PVector horizontal = new PVector(1, 0, 0);
 PVector vertical = new PVector(0, -1, 0);
 int time = 0;
 
+boolean capHit = false;
+
 boolean normie = true;
 
 void setup() {
@@ -28,11 +30,15 @@ void draw() {
 
 
 	time += 5;
+    if(time == 720){
+        capHit = true;
+    }
     time = time % 720;
+    
 
     pushMatrix();
     
-    if(time < 720){
-	    saveFrame("images/zobius-####.png");
+    if(!capHit){
+	    // saveFrame("images/zobius-####.png");
     }
 }

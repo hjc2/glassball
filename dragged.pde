@@ -7,9 +7,9 @@ void mouseDragged() {
     
     if (mouseButton == LEFT) {
         
-        	float diffX = mouseX - pmouseX;
-        	float diffY = mouseY - pmouseY;
-        
+        float diffX = mouseX - pmouseX;
+        float diffY = mouseY - pmouseY;
+
         diffY = -diffY;
         
         if (!(diffX == 0 && diffY == 0)) {

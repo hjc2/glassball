@@ -35,6 +35,25 @@ void drawMobiusStrip() {
     }
     endShape();
   }
+
+  // Drawing the border
+  stroke(0); // Set border color
+  strokeWeight(2); // Set border thickness
+  noFill(); // Ensure that only the border is drawn
+
+  for (float u = 0; u <= TWO_PI * 3; u += uStep) {
+    beginShape(LINE_STRIP);
+    float v = 1; // You can change this to 1 to draw the border on the other edge
+    for (int i = 0; i < 2; i++) {
+      float uOffset = (i == 0) ? 0 : uStep;
+      float x = (1 + (v / 2) * cos((u + uOffset) / 2)) * cos(u + uOffset);
+      float y = (1 + (v / 2) * cos((u + uOffset) / 2)) * sin(u + uOffset);
+      float z = (v / 2) * sin((u + uOffset) / 2);
+      vertex(x * 100, y * 100, z * 100);
+    }
+    endShape();
+  }
+
 }
 
 PVector calculateNormal(float u, float v) {
