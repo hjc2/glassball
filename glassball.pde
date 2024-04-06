@@ -21,9 +21,10 @@ void draw() {
     lights();
     
     colorMode(HSB);
-	drawBall(time, 0.5, 0.1, 0);
-	drawBall(time, 0.0, 0.1, 85);
-	drawBall(time, -0.5, 0.1, 170);
+	// drawBall(time, 0.5, 0.1, 0);
+	// drawBall(time, 0.0, 0.1, 85);
+	// drawBall(time, -0.5, 0.1, 170);
+    drawSnake(time,0.0,0.1,0);
 
 	drawMobiusStrip();
     
