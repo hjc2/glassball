@@ -1,6 +1,6 @@
 
 
 mobious strip
-
-![](movies/looping.gif)
+![](movies/tony.gif)
 ![](movies/specularLighting.gif)
+![](movies/looping.gif)
