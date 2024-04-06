@@ -9,10 +9,20 @@ boolean capHit = false;
 
 boolean normie = true;
 
+
+ArrayList<Snake> snakeList = new ArrayList<Snake>();
+
+
 void setup() {
     size(500, 500, P3D);
     translate(250, 250);
     pushMatrix();
+
+
+    for(int i = 0; i < 600; i++){
+        Snake tmp = new Snake();
+        snakeList.add(tmp);
+    }
 }
 
 void draw() {
@@ -24,13 +34,18 @@ void draw() {
 	// drawBall(time, 0.5, 0.1, 0);
 	// drawBall(time, 0.0, 0.1, 85);
 	// drawBall(time, -0.5, 0.1, 170);
-    drawSnake(time,0.0,0.1,0);
+
+    // drawSnakes();
+
+    for(Snake snake : snakeList){
+        snake.drawSnake(time);
+    }
 
 	drawMobiusStrip();
     
 
 
-	time += 5;
+	time += 1;
     if(time == 720){
         capHit = true;
     }
