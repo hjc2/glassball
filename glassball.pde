@@ -54,6 +54,6 @@ void draw() {
     
     move();
     if(time < 720){
-	    // saveFrame("images/zobius-####.png");
+	    saveFrame("images/zobius-####.png");
     }
 }

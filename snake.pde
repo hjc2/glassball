@@ -19,7 +19,7 @@ class Snake {
 		colorMode(HSB);
 		noFill();
 		strokeWeight(5);
-		stroke(c,255,255);
+		stroke(c,k,255);
 		specular(c,200,255);
 		shininess(120);
 
@@ -35,8 +35,8 @@ class Snake {
 		timeOffset = int(random(0,715));
 		vOffset = random(-0.5, 0.5);
 		normalOffset = (randomGaussian() + 0.0001 ) / 20 + 0.05;
-		// c = int(random(0,255));
-		c = int(180 + randomGaussian() * 20 + random(-20,20));
+		c = int(random(0,255));
+		// c = int(180 + randomGaussian() * 20 + random(-20,20));
 		k = int(235 + randomGaussian() * 20);
 		// b = int(randomGaussian() * 40 + 215);
 		myLen = int(random(10,20) * (randomGaussian() + 1.01));
