@@ -38,10 +38,11 @@ void draw() {
 	fill(255, 255, 255);
 	drawBall(time, -0.5, 0.1);
 
-	time += 5;
+	time += 1;
     time = time % 720;
     pushMatrix();
 
+    // println(time);
     // if(time < 720){
 	//     saveFrame("images/zobius-####.png");
 

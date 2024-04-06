@@ -90,3 +90,52 @@ PVector calculatePositionWithOffsets(float angleDegrees, float vOffset, float no
   
   return new PVector(x * 100, y * 100, z * 100); // Scale for visualization
 }
+
+// --
+
+
+float calculateRectangleAngle(float angleDegrees, float vOffset) {
+  float u = radians(angleDegrees); // Convert angle from degrees to radians
+  PVector normal = calculateNormalBall(u, vOffset); // Get the normal vector at this point
+
+  // Assuming the rectangle's alignment needs to be calculated with respect to the Z-axis,
+  // we can use the normal vector's projection on the X-Y plane and calculate the angle with respect to the X-axis.
+  
+  // Normalize the projection of the normal vector on the X-Y plane
+  PVector projectionXY = new PVector(normal.x, normal.y);
+  projectionXY.normalize();
+
+  // Calculate the angle of the projection with respect to the X-axis
+  // atan2 returns the angle in radians between the positive X-axis and the point (y, x)
+  float angleRadians = atan2(projectionXY.y, projectionXY.x);
+
+  // Convert radians to degrees if necessary
+  float angleDegreesResult = degrees(angleRadians);
+
+  return angleDegreesResult;
+}
+
+
+// Function to calculate the normal vector at a point on the Möbius strip
+PVector calculateNormalBall(float u, float v) {
+  // Calculate partial derivatives with respect to u and v
+  float dxdu = -sin(u) * (1 + v * cos(u / 2)) - 0.5 * v * sin(u / 2) * cos(u);
+  float dydu = cos(u) * (1 + v * cos(u / 2)) - 0.5 * v * sin(u / 2) * sin(u);
+  float dzdu = 0.5 * v * cos(u / 2);
+  
+  float dxdv = 0.5 * cos(u / 2) * cos(u);
+  float dydv = 0.5 * cos(u / 2) * sin(u);
+  float dzdv = 0.5 * sin(u / 2);
+  
+  // Create vectors for the partial derivatives
+  PVector du = new PVector(dxdu, dydu, dzdu);
+  PVector dv = new PVector(dxdv, dydv, dzdv);
+  
+  // Cross product of du and dv gives the normal vector
+  PVector normal = du.cross(dv);
+  
+  // Normalize the normal vector to ensure it's a unit vector
+  normal.normalize();
+  
+  return normal;
+}
