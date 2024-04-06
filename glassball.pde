@@ -1,6 +1,8 @@
 
 import toxi.geom.*;
 
+// used chatgpt, phind, claude  
+
 PVector horizontal = new PVector(1, 0, 0);
 PVector vertical = new PVector(0, -1, 0);
 int time = 0;
