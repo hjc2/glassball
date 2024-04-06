@@ -20,18 +20,19 @@ void draw() {
     
     colorMode(HSB);
 	drawBall(time, 0.5, 0.1, 0);
-	drawBall(time, 0.0, 0.1, 120);
-	drawBall(time, -0.5, 0.1, 240);
+	drawBall(time, 0.0, 0.1, 85);
+	drawBall(time, -0.5, 0.1, 170);
 
 	drawMobiusStrip();
     
 
 
-	time += 1;
+	time += 5;
     time = time % 720;
-    if(normie){
-        text("normals on", 0,0,0);
-    }
+
     pushMatrix();
     
+    if(time < 720){
+	    saveFrame("images/zobius-####.png");
+    }
 }

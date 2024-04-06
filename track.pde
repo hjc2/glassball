@@ -8,13 +8,8 @@ void drawMobiusStrip() {
   
   // Light setup
   colorMode(RGB);
-  // directionalLight(126, 126, 126, 0, 0, -1);
-  // pointLight(255, 255, 255, width/2, height/2, 200);
-  // pointLight(255,255,50, 400,400,0);
   ambientLight(102, 102, 102);
-  // directionalLight(126, 126, 126, 0, 0, 1);
 
-colorMode(HSB);
   for (float u = 0; u <= TWO_PI * 3; u += uStep) {
     beginShape(TRIANGLE_STRIP);
     noStroke();
@@ -30,8 +25,9 @@ colorMode(HSB);
         normal(normal.x, normal.y, normal.z);
         }
         
+        colorMode(HSB);
         fill(140, 0, 120); // HSB color mode
-        specular(120, 120, 120); // White specular highlights
+        specular(0, 255, 120); // White specular highlights
         shininess(200); // Shininess
 
         vertex(x * 100, y * 100, z * 100); // Scale up the size to make it visible
