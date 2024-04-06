@@ -52,8 +52,8 @@ void draw() {
 
     pushMatrix();
     
-    move();
+    // move();
     if(time < 720){
-	    saveFrame("images/zobius-####.png");
+	    // saveFrame("images/zobius-####.png");
     }
 }
