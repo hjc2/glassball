@@ -16,7 +16,7 @@ class Snake {
 
 		colorMode(HSB);
 		noFill();
-		strokeWeight(4);
+		strokeWeight(5);
 		stroke(c,255,255);
 		specular(c,200,255);
 		shininess(120);
