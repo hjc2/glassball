@@ -5,7 +5,6 @@ PVector horizontal = new PVector(1, 0, 0);
 PVector vertical = new PVector(0, -1, 0);
 int time = 0;
 
-boolean capHit = false;
 
 boolean normie = true;
 
@@ -19,7 +18,7 @@ void setup() {
     pushMatrix();
 
 
-    for(int i = 0; i < 600; i++){
+    for(int i = 0; i < 800; i++){
         Snake tmp = new Snake();
         snakeList.add(tmp);
     }
@@ -31,12 +30,8 @@ void draw() {
     lights();
     
     colorMode(HSB);
-	// drawBall(time, 0.5, 0.1, 0);
-	// drawBall(time, 0.0, 0.1, 85);
-	// drawBall(time, -0.5, 0.1, 170);
 
-    // drawSnakes();
-
+    pointLight(255, 0, 255, 200,200, 0);
     for(Snake snake : snakeList){
         snake.drawSnake(time);
     }
@@ -44,17 +39,12 @@ void draw() {
 	drawMobiusStrip();
     
 
-
 	time += 1;
-    if(time == 720){
-        capHit = true;
-    }
-    time = time % 720;
-    
+    // time = time % 720;
 
     pushMatrix();
     
-    if(!capHit){
+    if(time >= 720){
 	    // saveFrame("images/zobius-####.png");
     }
 }

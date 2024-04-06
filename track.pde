@@ -22,12 +22,12 @@ void drawMobiusStrip() {
 
         PVector normal = calculateNormal(u + uOffset, v);
         if(normie){
-        normal(normal.x, normal.y, normal.z);
+          normal(normal.x, normal.y, normal.z);
         }
         
         colorMode(HSB);
-        fill(140, 0, 120); // HSB color mode
-        specular(0, 255, 120); // White specular highlights
+        fill(140, 0, 140); // HSB color mode
+        specular(0, 200, 120); // White specular highlights
         shininess(200); // Shininess
 
         vertex(x * 100, y * 100, z * 100); // Scale up the size to make it visible
