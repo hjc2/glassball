@@ -1,53 +1,42 @@
 
-
-
-void drawMobiusStrip(float loops) {
-
-
+void drawMobiusStrip() {
   int stepsLength = 120;
   int stepsWide = 10;
 
-float uStep = TWO_PI / stepsLength;
+  float uStep = TWO_PI / stepsLength;
   float vStep = 2.0 / stepsWide;
-  for (float u = 0; u <= TWO_PI * loops; u += uStep) {
+  
+  // Light setup
+  colorMode(RGB);
+  // directionalLight(126, 126, 126, 0, 0, -1);
+  // pointLight(255, 255, 255, width/2, height/2, 200);
+  ambientLight(102, 102, 102);
+  // directionalLight(126, 126, 126, 0, 0, 1);
 
+colorMode(HSB);
+  for (float u = 0; u <= TWO_PI * 3; u += uStep) {
     beginShape(TRIANGLE_STRIP);
-
     noStroke();
-    // strokeWeight(1);
-    // stroke(0);
-
     for (float v = -1; v <= 1; v += vStep) {
       for (int i = 0; i < 2; i++) {
         float uOffset = (i == 0) ? 0 : uStep;
         float x = (1 + (v / 2) * cos((u + uOffset) / 2)) * cos(u + uOffset);
         float y = (1 + (v / 2) * cos((u + uOffset) / 2)) * sin(u + uOffset);
         float z = (v / 2) * sin((u + uOffset) / 2);
-    
-        colorMode(HSB, 360, 100, 100);
 
-        fill(190, 100, 80);
+        PVector normal = calculateNormal(u + uOffset, v);
+        if(normie){
+        normal(normal.x, normal.y, normal.z);
+        }
+        
+        fill(140, 0, 120); // HSB color mode
+        specular(240, 255, 200); // White specular highlights
+        shininess(255); // Shininess
 
         vertex(x * 100, y * 100, z * 100); // Scale up the size to make it visible
       }
     }
     endShape();
-  }
-  // Draw edges with a stroke
-  strokeWeight(2);
-  stroke(255); // Set stroke color to black
-  for (float u = 0; u <= TWO_PI * loops; u += uStep) {
-    for (float[] v : new float[][]{{-1, -1 + vStep}, {1 - vStep, 1}}) { // Only draw the top and bottom edges
-      beginShape(LINES);
-      for (int i = 0; i < 2; i++) {
-        float uOffset = (i == 0) ? 0 : uStep;
-        float x = (1 + (v[i] / 2) * cos((u + uOffset) / 2)) * cos(u + uOffset);
-        float y = (1 + (v[i] / 2) * cos((u + uOffset) / 2)) * sin(u + uOffset);
-        float z = (v[i] / 2) * sin((u + uOffset) / 2);
-        vertex(x * 100, y * 100, z * 100); // Scale up the size to make it visible
-      }
-      endShape();
-    }
   }
 }
 
@@ -68,6 +57,7 @@ PVector calculateNormal(float u, float v) {
   
   return normal;
 }
+
 // Function to calculate a point's position considering both an offset along and perpendicular to the Möbius strip
 PVector calculatePositionWithOffsets(float angleDegrees, float vOffset, float normalOffset) {
   float u = radians(angleDegrees); // Angle converted to radians for the longitudinal position

@@ -5,14 +5,14 @@
 void mouseDragged() {
     
     
-    if(mouseButton == LEFT) {
+    if (mouseButton == LEFT) {
         
-		float diffX = mouseX - pmouseX;
-		float diffY = mouseY - pmouseY;
+        	float diffX = mouseX - pmouseX;
+        	float diffY = mouseY - pmouseY;
         
         diffY = -diffY;
         
-       if (!(diffX == 0 && diffY == 0)) {
+        if (!(diffX == 0 && diffY == 0)) {
             
             popMatrix();
             
@@ -35,21 +35,21 @@ void mouseDragged() {
             //stage of rotate back to the axis
             
             horizontal = rotateAroundAxis(horizontal, axis, -angle);
-            vertical= rotateAroundAxis(vertical, axis, -angle);
+            vertical = rotateAroundAxis(vertical, axis, -angle);
             
             rotateAroundAxisBasisChange(axis, angle);
-
-      		pushMatrix();
+            
+            		pushMatrix();
         }
-	}
-
-	if(mouseButton == RIGHT){
-		float diffX = mouseX - pmouseX;
-
-    	if (!(diffX == 0)) {
-
+        }
+    
+    if (mouseButton == RIGHT) {
+        	float diffX = mouseX - pmouseX;
+        
+        if (!(diffX == 0)) {
+            
             popMatrix();
-
+            
             horizontal.normalize();
             vertical.normalize();
             //seems to be correct
@@ -57,18 +57,24 @@ void mouseDragged() {
             
             PVector outscreen = horizontal.cross(vertical);
             
-			float angle = mouseVector.mag() / 120;
-        
-			if(diffX < 0){
-				angle = angle * -1;
-			}
+           		float angle = mouseVector.mag() / 120;
+            
+            		if (diffX < 0) {
+                			angle = angle * - 1;
+                		}
             
             horizontal = rotateAroundAxis(horizontal, outscreen, angle);
-            vertical= rotateAroundAxis(vertical, outscreen, angle);
+            vertical = rotateAroundAxis(vertical, outscreen, angle);
             
             rotateAroundAxisBasisChange(outscreen, -angle);
+            
+        	    pushMatrix();
+            	}
+        }
+}
 
-       		pushMatrix();
-		}
-	}
+
+void keyPressed(){
+
+    normie = !normie;
 }

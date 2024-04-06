@@ -5,8 +5,7 @@ PVector horizontal = new PVector(1, 0, 0);
 PVector vertical = new PVector(0, -1, 0);
 int time = 0;
 
-
-
+boolean normie = true;
 
 void setup() {
     size(500, 500, P3D);
@@ -19,31 +18,18 @@ void draw() {
     background(100);
     lights();
     
-//   directionalLight(255, 255, 255, 0, 0, -1); // Additional directional light
-//   directionalLight(255, 255, 255, 0, 0, 1); // Additional directional light
-
-
-    // strokeWeight(6);
-    // stroke(255);
-    // line(0, 0, 0, horizontal.x * height, horizontal.y * height, horizontal.z * height);
-    // line(0, 0, 0, vertical.x * height, vertical.y * height, vertical.z * height);
-    
-	drawMobiusStrip(3);
+	drawMobiusStrip();
     
     colorMode(HSB);
-	fill(0, 255, 255);
-	drawBall(time, 0.5, 0.1);
-	fill(122, 255, 255);
-	drawBall(time, 0.0, 0.1);
-	fill(255, 255, 255);
-	drawBall(time, -0.5, 0.1);
+	drawBall(time, 0.5, 0.1, 0);
+	drawBall(time, 0.0, 0.1, 120);
+	drawBall(time, -0.5, 0.1, 240);
 
 	time += 5;
     time = time % 720;
+    if(normie){
+        text("normals on", 0,0,0);
+    }
     pushMatrix();
-
-    // if(time < 720){
-	//     saveFrame("images/zobius-####.png");
-
-    // }
+    
 }
